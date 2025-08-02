@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/elefantentritt.schema.json",
-    "title": "ElefantentrittRecipe",
+    "$id": "https://gesell-workdata.github.io/schemata/recipe_schema.json",
+    "title": "Gesell Recipe schema",
     "type": "object",
     "$defs": {
         "quantity": {
