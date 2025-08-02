@@ -22,7 +22,7 @@
         "temperature": {
             "type": "object",
             "properties": {
-                "value": {
+                "magnitude": {
                     "type": "number"
                 },
                 "unit": {
@@ -38,14 +38,14 @@
                 }
             },
             "required": [
-                "value",
+                "magnitude",
                 "unit"
             ]
         },
         "duration": {
             "type": "object",
             "properties": {
-                "value": {
+                "magnitude": {
                     "type": "number"
                 },
                 "unit": {
@@ -68,14 +68,14 @@
                 }
             },
             "required": [
-                "value",
+                "magnitude",
                 "unit"
             ]
         },
         "volume": {
             "type": "object",
             "properties": {
-                "value": {
+                "magnitude": {
                     "type": "number"
                 },
                 "unit": {
@@ -97,14 +97,14 @@
                 }
             },
             "required": [
-                "value",
+                "magnitude",
                 "unit"
             ]
         },
         "amount": {
             "type": "object",
             "properties": {
-                "value": {
+                "magnitude": {
                     "type": "number"
                 },
                 "unit": {
@@ -132,14 +132,14 @@
                 }
             },
             "required": [
-                "value",
+                "magnitude",
                 "unit"
             ]
         },
         "gravity": {
             "type": "object",
             "properties": {
-                "value": {
+                "magnitude": {
                     "type": "number"
                 },
                 "unit": {
@@ -155,7 +155,7 @@
                 }
             },
             "required": [
-                "value",
+                "magnitude",
                 "unit"
             ]
         }
