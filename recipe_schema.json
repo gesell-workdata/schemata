@@ -1,0 +1,459 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/elefantentritt.schema.json",
+    "title": "ElefantentrittRecipe",
+    "type": "object",
+    "$defs": {
+        "quantity": {
+            "type": "object",
+            "properties": {
+                "magnitude": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "magnitude",
+                "unit"
+            ]
+        },
+        "temperature": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": [
+                        "Celsius",
+                        "celsius",
+                        "Fahrenheit",
+                        "fahrenheit",
+                        "Kelvin",
+                        "kelvin"
+                    ]
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ]
+        },
+        "duration": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": [
+                        "s",
+                        "second",
+                        "seconds",
+                        "m",
+                        "min",
+                        "minute",
+                        "minutes",
+                        "h",
+                        "hour",
+                        "hours",
+                        "d",
+                        "day",
+                        "days"
+                    ]
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ]
+        },
+        "volume": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": [
+                        "ml",
+                        "milliliter",
+                        "milliliters",
+                        "l",
+                        "liter",
+                        "liters",
+                        "cl",
+                        "centiliter",
+                        "centiliters",
+                        "dl",
+                        "deciliter",
+                        "deciliters"
+                    ]
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ]
+        },
+        "amount": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": [
+                        "g",
+                        "gram",
+                        "grams",
+                        "kg",
+                        "kilogram",
+                        "kilograms",
+                        "ml",
+                        "milliliter",
+                        "milliliters",
+                        "l",
+                        "liter",
+                        "liters",
+                        "cl",
+                        "centiliter",
+                        "centiliters",
+                        "dl",
+                        "deciliter",
+                        "deciliters"
+                    ]
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ]
+        },
+        "gravity": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": [
+                        "g/l",
+                        "grams per liter",
+                        "g/ml",
+                        "grams per milliliter",
+                        "kg/l",
+                        "kilograms per liter"
+                    ]
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ]
+        }
+    },
+    "properties": {
+        "kuid": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "legacy": {
+            "type": "boolean"
+        },
+        "notes": {
+            "type": "string"
+        },
+        "targets": {
+            "type": "object",
+            "properties": {
+                "abv": {
+                    "type": "number"
+                },
+                "ibu": {
+                    "type": "number"
+                },
+                "ebc": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "abv",
+                "ibu",
+                "ebc"
+            ]
+        },
+        "main_mash_water": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "$ref": "#/$defs/volume"
+                    }
+                },
+                "required": [
+                    "name",
+                    "quantity"
+                ]
+            }
+        },
+        "fermentables": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "$ref": "#/$defs/amount"
+                    },
+                    "ebc_color": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "name",
+                    "description",
+                    "quantity",
+                    "ebc_color"
+                ]
+            }
+        },
+        "infuse_temperature": {
+            "$ref": "#/$defs/temperature"
+        },
+        "mash_steps": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "temperature": {
+                        "$ref": "#/$defs/temperature"
+                    },
+                    "end_temperature": {
+                        "$ref": "#/$defs/temperature"
+                    },
+                    "duration": {
+                        "$ref": "#/$defs/duration"
+                    }
+                },
+                "required": [
+                    "name",
+                    "temperature",
+                    "end_temperature",
+                    "duration"
+                ]
+            }
+        },
+        "lauter_temperature": {
+            "$ref": "#/$defs/temperature"
+        },
+        "sparge": {
+            "type": "object",
+            "properties": {
+                "water": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "quantity": {
+                                "$ref": "#/$defs/volume"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "quantity"
+                        ]
+                    }
+                },
+                "temperature": {
+                    "$ref": "#/$defs/temperature"
+                }
+            },
+            "required": [
+                "water",
+                "temperature"
+            ]
+        },
+        "boil_steps": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "duration": {
+                        "$ref": "#/$defs/duration"
+                    },
+                    "hops": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "quantity": {
+                                    "$ref": "#/$defs/amount"
+                                },
+                                "alpha_acid": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "description",
+                                "quantity",
+                                "alpha_acid"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "duration",
+                    "hops"
+                ]
+            }
+        },
+        "fermentation": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "culture": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "quantity": {
+                                    "$ref": "#/$defs/amount"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "description",
+                                "quantity"
+                            ]
+                        }
+                    },
+                    "dry_hops": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "quantity": {
+                                    "$ref": "#/$defs/amount"
+                                },
+                                "alpha_acid": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "description",
+                                "quantity",
+                                "alpha_acid"
+                            ]
+                        }
+                    },
+                    "temperature": {
+                        "$ref": "#/$defs/temperature"
+                    },
+                    "duration": {
+                        "$ref": "#/$defs/duration"
+                    },
+                    "start_gravity": {
+                        "$ref": "#/$defs/gravity"
+                    },
+                    "end_gravity": {
+                        "$ref": "#/$defs/gravity"
+                    }
+                },
+                "required": [
+                    "name",
+                    "temperature",
+                    "duration",
+                    "start_gravity",
+                    "end_gravity"
+                ]
+            }
+        }
+    },
+    "required": [
+        "kuid",
+        "name",
+        "description",
+        "legacy",
+        "notes",
+        "targets",
+        "main_mash_water",
+        "fermentables",
+        "infuse_temperature",
+        "mash_steps",
+        "lauter_temperature",
+        "sparge",
+        "boil_steps",
+        "fermentation"
+    ]
+}
